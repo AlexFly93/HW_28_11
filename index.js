@@ -3,16 +3,17 @@
 
 
 function faktorialOfNum(num) {
-  if (typeof num !== ("number" && "bigint")) {
+  if (typeof num !== "number" && typeof num !== "bigint") {
     throw new TypeError("type not right");
   }
-    if (num < 0n) {
+    if (num < 0) {
         throw new Error('num must be positive!')
     }
-  if (num === 0n) {
-    return 1n;
+  if (num === 0 || num === 0n) {
+    return typeof num ==='bigint' ? 1n:1
   }
-  return num * faktorialOfNum(num - 1n);
+  
+  return num * faktorialOfNum(num - (typeof num === "bigint" ? 1n : 1));
 }
 try {
     console.log(faktorialOfNum(220n));
